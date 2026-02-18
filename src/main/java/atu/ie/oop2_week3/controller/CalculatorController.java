@@ -19,9 +19,17 @@ public class CalculatorController {
     }
 
     @GetMapping("/add")
-
     public ResponseEntity<Integer> add(@RequestParam int a, @RequestParam int b) {
         int result = calculatorService.add(a, b);
+        return ResponseEntity.ok(result);
+    }
+
+    @GetMapping("/devide")
+    public ResponseEntity<?> divide(@RequestParam int a, @RequestParam int b) {
+        if (b == 0) {
+            return ResponseEntity.badRequest().body("Division by zero is not allowed");
+        }
+        int result = calculatorService.devide(a, b);
         return ResponseEntity.ok(result);
     }
 }
