@@ -1,8 +1,10 @@
 package atu.ie.oop2_week3.controller;
 
 import atu.ie.oop2_week3.service.CalculatorService;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
 
 @RestController
@@ -17,7 +19,9 @@ public class CalculatorController {
     }
 
     @GetMapping("/add")
-    public String add(String a, String b) {
-        return "";
+
+    public ResponseEntity<Integer> add(@RequestParam int a, @RequestParam int b) {
+        int result = calculatorService.add(a, b);
+        return ResponseEntity.ok(result);
     }
 }
